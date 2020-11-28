@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.parent-page {
+  background: rgb(241, 241, 241);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 2.5em;
+}

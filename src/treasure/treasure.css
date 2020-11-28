@@ -1,0 +1,17 @@
+.treasure-container {
+  display: grid;
+  margin: auto;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.treasure {
+  padding: 15px;
+  margin: 10px 10px;
+  border-radius: 10px;
+  align-content: center;
+  background-color: #a1b79c;
+  /* #04a0a8; */
+  text-align: center;
+  box-shadow: 0 0 10px rgba(39, 34, 34, 0.733);
+}
