@@ -6,6 +6,8 @@ import SingleTreasure from './treasure/single_treasure.component';
 import TreasureComponent from './treasure/treasure.component';
 import TreasureDetailComponent from './treasure_detail/treasure_detail.component';
 import PossessedTreasures from './owned_treasures/possessed_treasures.component';
+import PlaygroundComponent from './playground/playground.component';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +24,8 @@ class App extends React.Component {
         {/* <LoginComponent/> */}
         {/* <TreasureComponent /> */}
         {/* <TreasureDetailComponent/> */}
-        <PossessedTreasures/>
+        <PlaygroundComponent/>
+        {/* <PossessedTreasures/> */}
       </div>
     )
   }
