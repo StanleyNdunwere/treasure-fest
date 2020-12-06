@@ -2,6 +2,7 @@ import React from 'react'
 import '../global/css/general_css.css'
 import "./treasure.css"
 import SingleTreasure from './single_treasure.component'
+import { Link } from 'react-router-dom'
 
 
 class TreasureComponent extends React.Component {
@@ -67,7 +68,12 @@ class TreasureComponent extends React.Component {
         <h2>
           Welcome Courageous One!
           </h2>
-        <a href="find-out-more-this-treasure" className="button">View All Thine Possessed Treasures!</a>
+        <a style={{
+          marginRight: "15px"
+        }} href="treasure-store" className="button">View All Thine Possessed Treasures!</a>
+        <Link to="/" onClick={() => {
+          window.localStorage.clear()
+        }} className="button">Logout</Link>
 
         <p>
           Few men have ventured this far and lived to tell the tale. Our treasures are as rare as they are powerful.
@@ -82,8 +88,8 @@ class TreasureComponent extends React.Component {
         </div>
         <div className="treasure-container">
           {this.state.treasures.map((treasure) => {
-            console.log(treasure)
             return <SingleTreasure
+              key={treasure.name}
               name={treasure.name}
               feature={treasure.feature}
               price={treasure.price} />

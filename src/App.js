@@ -6,6 +6,7 @@ import SingleTreasure from './treasure/single_treasure.component';
 import TreasureComponent from './treasure/treasure.component';
 import TreasureDetailComponent from './treasure_detail/treasure_detail.component';
 import PossessedTreasures from './owned_treasures/possessed_treasures.component';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,15 +16,25 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(window.localStorage.getItem("logged_in"))
     return (
-
       <div className="parent-page">
-        {/* <HomeComponent/> */}
-        {/* <LoginComponent/> */}
-        {/* <TreasureComponent /> */}
-        {/* <TreasureDetailComponent/> */}
-        <PossessedTreasures/>
+        <Switch>
+          <Route exact path="/" component={HomeComponent} />
+
+          <Route exact path="/login" component=
+            {window.localStorage.getItem("logged_in") == true ? TreasureComponent : LoginComponent} />
+          <Route exact path="/treasures" component={TreasureComponent} />
+          <Route path="/treasures/:treasure" component={TreasureDetailComponent} />
+
+          {/* <HomeComponent/> */}
+          {/* <LoginComponent/> */}
+          {/* <TreasureComponent /> */}
+          {/* <TreasureDetailComponent/> */}
+          {/* <PossessedTreasures /> */}
+        </Switch>
       </div>
+
     )
   }
 }

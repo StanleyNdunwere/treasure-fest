@@ -1,5 +1,6 @@
 import React from 'react'
 import '../global/css/general_css.css'
+import { Link } from 'react-router-dom'
 
 class HomeComponent extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class HomeComponent extends React.Component {
             <em> Who knows what you might find?</em>
           </b>
         </p>
-        <a href={"hulalalalalalal"} className="button">Click Me!!</a>
+        <Link className="button" to="/login">Click Mee!!!!</Link>
       </div>
     )
   }
