@@ -6,12 +6,7 @@ import SingleTreasure from './treasure/single_treasure.component';
 import TreasureComponent from './treasure/treasure.component';
 import TreasureDetailComponent from './treasure_detail/treasure_detail.component';
 import PossessedTreasures from './owned_treasures/possessed_treasures.component';
-<<<<<<< HEAD
 import { Route, Switch } from 'react-router-dom';
-=======
-import PlaygroundComponent from './playground/playground.component';
-
->>>>>>> 74ad5fc01b8455a9fb7fafdd53316568bb497d55
 
 class App extends React.Component {
   constructor(props) {
