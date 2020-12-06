@@ -18,7 +18,7 @@ class SingleTreasure extends React.Component {
         </p>
         <p>{"$" + this.props.price}
         </p>
-        <Link className="button" to="/">Learn More!</Link>
+        <Link className="button" to={"/treasures/" + this.props.shortName}>Learn More!</Link>
       </div>
     )
   }
