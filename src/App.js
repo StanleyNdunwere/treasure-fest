@@ -23,7 +23,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomeComponent} />
           <Route exact path="/login" component=
-            {window.localStorage.getItem("logged_in") == true ? TreasureComponent : LoginComponent} />
+            {window.localStorage.getItem("logged_in") === 'true' ? TreasureComponent : LoginComponent} />
           <Route exact path="/treasures" component={TreasureComponent} />
           <Route path="/treasures/:treasure" component={TreasureDetailComponent} />
 
