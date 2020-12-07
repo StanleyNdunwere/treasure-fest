@@ -21,12 +21,11 @@ class App extends React.Component {
       <div className="parent-page">
 
         <Switch>
-          <PublicRoute exact path="/" fallbackPath="/treasures" component={HomeComponent} />
-          <PublicRoute exact path="/login" fallbackPath="/treasures" component={LoginComponent} />
+          <PublicRoute exact path="/" restricted={false} fallbackPath="/treasures" component={HomeComponent} />
+          <PublicRoute exact path="/login" restricted={true} fallbackPath="/treasures" component={LoginComponent} />
           <PrivateRoute exact path="/treasures" fallbackPath="/login" component={TreasureComponent} />
           <PrivateRoute path="/treasures/:treasure" fallbackPath="/login" component={TreasureDetailComponent} />
           <PrivateRoute path="/treasure-store" fallbackPath="/login" component={PossessedTreasures} />
-
 
         </Switch>
 
@@ -51,13 +50,13 @@ function PrivateRoute(props) {
 
 
 function PublicRoute(props) {
-  const { component: Component, fallbackPath, ...rest } = { ...props }
+  const { component: Component, restricted, fallbackPath, ...rest } = { ...props }
   let loggedIn = (window.localStorage.getItem("logged_in")) === 'true'
 
   return (
     <Route {...rest} render=
       {(props) =>
-        loggedIn ? <Redirect to={fallbackPath} {...props} /> : <Component  {...props} />} >
+        loggedIn && restricted ? <Redirect to={fallbackPath} {...props} /> : <Component  {...props} />} >
     </Route>
   )
 }
