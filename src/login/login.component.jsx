@@ -9,6 +9,7 @@ class LoginComponent extends React.Component {
       name: "",
       password: ""
     }
+    console.log(props)
   }
 
   handleSetValue = (val, type) => {

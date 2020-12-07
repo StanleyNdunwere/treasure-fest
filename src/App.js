@@ -6,7 +6,7 @@ import SingleTreasure from './treasure/single_treasure.component';
 import TreasureComponent from './treasure/treasure.component';
 import TreasureDetailComponent from './treasure_detail/treasure_detail.component';
 import PossessedTreasures from './owned_treasures/possessed_treasures.component';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,23 +16,18 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(window.localStorage.getItem("logged_in"))
+    let loggedIn = (window.localStorage.getItem("logged_in")) === 'true'
     return (
       <div className="parent-page">
 
         <Switch>
-          <Route exact path="/" component={HomeComponent} />
-          <Route exact path="/login" component=
-            {window.localStorage.getItem("logged_in") === 'true' ? TreasureComponent : LoginComponent} />
-          <Route exact path="/treasures" component={TreasureComponent} />
-          <Route path="/treasures/:treasure" component={TreasureDetailComponent} />
-          <Route path="/treasure-store" component={PossessedTreasures} />
+          <PublicRoute exact path="/" fallbackPath="/treasures" component={HomeComponent} />
+          <PublicRoute exact path="/login" fallbackPath="/treasures" component={LoginComponent} />
+          <PrivateRoute exact path="/treasures" fallbackPath="/login" component={TreasureComponent} />
+          <PrivateRoute path="/treasures/:treasure" fallbackPath="/login" component={TreasureDetailComponent} />
+          <PrivateRoute path="/treasure-store" fallbackPath="/login" component={PossessedTreasures} />
 
-          {/* <HomeComponent/> */}
-          {/* <LoginComponent/> */}
-          {/* <TreasureComponent /> */}
-          {/* <TreasureDetailComponent/> */}
-          {/* <PossessedTreasures /> */}
+
         </Switch>
 
       </div>
@@ -42,26 +37,28 @@ class App extends React.Component {
 }
 
 export default App;
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+
+function PrivateRoute(props) {
+  const { component: Component, fallbackPath, ...rest } = { ...props }
+  let loggedIn = (window.localStorage.getItem("logged_in")) === 'true'
+
+  return (
+    <Route {...rest} render=
+      {(props) => loggedIn ? <Component {...props} /> : <Redirect to={fallbackPath} {...props} />}>
+    </Route>
+  )
+}
 
 
-// export default App;
+function PublicRoute(props) {
+  const { component: Component, fallbackPath, ...rest } = { ...props }
+  let loggedIn = (window.localStorage.getItem("logged_in")) === 'true'
+
+  return (
+    <Route {...rest} render=
+      {(props) =>
+        loggedIn ? <Redirect to={fallbackPath} {...props} /> : <Component  {...props} />} >
+    </Route>
+  )
+}
+
