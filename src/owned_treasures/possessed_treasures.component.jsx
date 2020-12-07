@@ -34,7 +34,7 @@ class PossessedTreasures extends React.Component {
                 You have no possessed treasures yet!
               </b>
             </p>
-            <a href="find-out-more-this-treasure" className="button">View Treasures You May Want To Possess</a>
+            <a href="/treasures" className="button">View Treasures You May Want To Possess</a>
           </div>
         </p>
 

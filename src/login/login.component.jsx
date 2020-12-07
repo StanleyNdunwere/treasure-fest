@@ -5,6 +5,19 @@ class LoginComponent extends React.Component {
 
   constructor(props) {
     super()
+    this.state = {
+      name: "",
+      password: ""
+    }
+  }
+
+  handleSetValue = (val, type) => {
+    if (type === "name") {
+      this.setState({ name: val.target.value })
+    } else {
+      this.setState({ password: "lololol" })
+    }
+
   }
 
   render() {
@@ -24,20 +37,38 @@ class LoginComponent extends React.Component {
           Don't worry, we shall keep your secret and no man nor soul that grace the earth, the heaven plows nor roams far below shall know!
         </p>
         <p>
-          <form className form>
-            <label for="name"><b>Enter thy Name:</b></label><br />
-            <input type="text" name="name" />
-            <br />
-            <label for="password"><b>Enter thy password:</b></label><br />
-            <input type="password" name="password" />
-            <br />
-            <input
-              style={{
-                border: "none",
-              }}
-              type='submit' className="button" name="submit" value="Login" />
-            <br />
-          </form>
+          <b>Enter thy Name:</b><br />
+          <input type="text" name="name" onChange={(e) => {
+            this.handleSetValue(e, "name")
+          }} />
+          <br />
+          <b>Enter thy password:</b><br />
+          <input type="password" name="password" onChange={(e) => {
+            this.handleSetValue(e, "password")
+          }} />
+          <br />
+          <input
+            style={{
+              border: "none",
+            }}
+            type='submit' onClick={(e) => {
+              e.preventDefault()
+              if (this.state.name.length < 5) {
+                alert("Amigo, Enter a Valid Name")
+                return
+              }
+              if (this.state.password.length < 5) {
+                alert("Amigo, Password must be greater than 5 characters")
+                return
+              }
+              window.localStorage.setItem("logged_in", "true")
+              window.localStorage.setItem("name", this.state.name.toString())
+              window.localStorage.setItem("password", this.state.password.toString())
+              this.props.history.replace("/treasures")
+              console.log(this.props.history)
+            }} className="button" name="submit" value="Login" />
+          <br />
+
         </p>
 
       </div>
