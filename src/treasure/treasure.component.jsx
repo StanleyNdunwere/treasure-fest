@@ -23,7 +23,7 @@ class TreasureComponent extends React.Component {
         <hr></hr>
 
         <h2>
-          Welcome Courageous One!
+          Welcome{" " + window.localStorage.getItem("name")}
           </h2>
         <a style={{
           marginRight: "15px"

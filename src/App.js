@@ -26,6 +26,7 @@ class App extends React.Component {
             {window.localStorage.getItem("logged_in") === 'true' ? TreasureComponent : LoginComponent} />
           <Route exact path="/treasures" component={TreasureComponent} />
           <Route path="/treasures/:treasure" component={TreasureDetailComponent} />
+          <Route path="/treasure-store" component={PossessedTreasures} />
 
           {/* <HomeComponent/> */}
           {/* <LoginComponent/> */}
